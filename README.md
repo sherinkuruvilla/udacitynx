@@ -1,0 +1,2 @@
+# udacitynx
+Linux setup project
