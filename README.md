@@ -16,7 +16,8 @@ changed port 22 to 2200
 enable ufw for 2200, 80 and 123
 installed apache2
 installed mod wsgi and tested
-python-pip
+sudo apt-get install python-pip 
+sudo pip install virtualenv 
 tested flask
 
 iv. A list of any third-party resources you made use of to complete this project.
