@@ -75,6 +75,7 @@ Verify only local connections are allowed
     sudo nano /etc/postgresql/9.5/main/pg_hba.conf 
 
 Created Application DB user account and database
+```sql
     CREATE USER catalog WITH
       LOGIN
       NOSUPERUSER
@@ -91,7 +92,7 @@ Created Application DB user account and database
         OWNER = catalog
         ENCODING = 'UTF8'
         CONNECTION LIMIT = -1;
-
+```
     su - catalog
     psql itemcatalog
 
