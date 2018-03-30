@@ -143,7 +143,6 @@ Configure Mod WSGIU
     default.conf
     sudo nano /etc/apache2/sites-enabled/000-default.conf   --itemcatalog.com.conf
 
-====
 configure mod_wsgi to start running this python application
 on root url /
 set default folder location to look for python files
@@ -179,7 +178,7 @@ reload apache configuration
 
 veriy mod wsgi is working
 http://18.188.61.208.xip.io
---It works!   (Hello, Flask!)
+ It works!   (Hello, Flask!)
 
 Clone project from git to Ubuntu
 ```linux
