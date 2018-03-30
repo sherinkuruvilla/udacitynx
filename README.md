@@ -65,7 +65,7 @@ http://18.188.61.208.xip.io
     sudo -H apt-get install libapache2-mod-wsgi
 
 * Installed Python and required softare using pip install
-  ```linux
+   ```linux
     sudo -H apt update	            --refresh repo
     sudo -H apt dist-upgrade       --update all software
     sudo -H apt install python2.7 python-pip
@@ -75,18 +75,20 @@ http://18.188.61.208.xip.io
     sudo -H pip install sqlalchemy
     sudo -H pip install --upgrade oauth2client
     sudo -H pip install requests
-```
-* Installed PostGres database server
-  ```linux
+    ```
+
+*  Installed PostGres database server
+    ```linux
     sudo apt-get install postgresql postgresql-contrib
     sudo -u postgres psql postgres
     \password postgres
-```
+    ```
+
 * Verify only local connections are allowed
     sudo nano /etc/postgresql/9.5/main/pg_hba.conf 
 
 * Created Application DB user account and database
-```sql
+    ```sql
     CREATE USER catalog WITH
       LOGIN
       NOSUPERUSER
@@ -103,7 +105,7 @@ http://18.188.61.208.xip.io
         OWNER = catalog
         ENCODING = 'UTF8'
         CONNECTION LIMIT = -1;
-```
+    ```
     su - catalog
     psql itemcatalog
 
@@ -112,7 +114,7 @@ http://18.188.61.208.xip.io
     python lotsofmenus.py
 
 * Install GIT
-sudo -H apt-get install git
+  sudo -H apt-get install git
 
 
 * Configure console.google.com to add the new paths for oauth
