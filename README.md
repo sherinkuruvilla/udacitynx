@@ -3,13 +3,13 @@ A baseline installation of a AWS lightsail out of the box Linux distribution was
 
 # Details on the Linux Box
 
-### The IP address and SSH port
+### IP address and SSH port
 18.188.61.208 port 2200
 
-### The complete URL to the hosted web application
+### Complete URL to the hosted web application
 http://18.188.61.208.xip.io
 
-### A summary of software you installed and configuration changes made.
+### Summary of software installed and configuration changes made.
 Provisioned LighSail instance from https://lightsail.aws.amazon.com/ls/webapp/home/instances
 Updated the software packages using apt-get package manager repository.
     sudo apt-get update
@@ -128,6 +128,7 @@ Test if Flask is working
   sudo touch /var/www/itemcatalogapp/itemcatalog.py
   sudo nano /var/www/itemcatalogapp/itemcatalog.py
   add following:
+  ```python
   from flask import Flask
   app = Flask(__name__)
   @app.route("/")
@@ -135,7 +136,7 @@ Test if Flask is working
       return "Hello, Flask!"
   if __name__ == "__main__":
       app.run()
-
+```
 Configure Mod WSGIU
     cd /etc/apache2/sites-enabled
     sudo nano mv /etc/apache2/sites-enabled/000-default.conf  /etc/apache2/sites-enabled/001-
@@ -146,9 +147,8 @@ Configure Mod WSGIU
 configure mod_wsgi to start running this python application
 on root url /
 set default folder location to look for python files
-====
-
-  <VirtualHost *:80>
+```html
+<VirtualHost *:80>
       ServerAdmin sherin.kuruvilla@gmail.com
       ServerName itemcatalog.com
       ServerAlias itemcatalog.com
@@ -166,7 +166,7 @@ set default folder location to look for python files
           Allow from all
       </Directory>
     </VirtualHost>
-
+```
 change owner:
     sudo chown -R www-data:www-data /var/www/itemcatalog.com
 
