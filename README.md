@@ -182,19 +182,22 @@ http://18.188.61.208.xip.io
 --It works!   (Hello, Flask!)
 
 Clone project from git to Ubuntu
+```linux
   cd /var/www
   sudo mv itemcatalogapp test
   sudo git clone "https://github.com/sherinkuruvilla/OAuth2.0" itemcatalogapp
   sudo cp /var/www/test/itemcatalog.wsgi /var/www/itemcatalogapp/itemcatalog.wsgi   --added to git
   sudo /etc/init.d/apache2 reload
+```
 
 Application URL is working!
+```html
   http://18.188.61.208.xip.io
-
+```
 
 
 ### A list of any third-party resources you made use of to complete this project
-http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/
-http://modwsgi.readthedocs.io/en/develop/user-guides/quick-configuration-guide.html
-https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-ubuntu-16-04
-Several forums and google results
+1. http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/
+2. http://modwsgi.readthedocs.io/en/develop/user-guides/quick-configuration-guide.html
+3. https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-ubuntu-16-04
+4. Several forums and google results
