@@ -10,19 +10,24 @@ A baseline installation of a AWS lightsail out of the box Linux distribution was
 http://18.188.61.208.xip.io
 
 ### Summary of software installed and configuration changes made.
-Provisioned LighSail instance from https://lightsail.aws.amazon.com/ls/webapp/home/instances
-Updated the software packages using apt-get package manager repository.
+* Provisioned LighSail instance from https://lightsail.aws.amazon.com/ls/webapp/home/instances
+* Updated the software packages using apt-get package manager repository.
+  ``` linux
     sudo apt-get update
     sudo apt-get upgrade
-Hardened the server against common attack vectors
-Disallowed remote root login, changed default ssh port, and enforced RSA key authorizations.
+    ```
+* Hardened the server against common attack vectors
+* Disallowed remote root login, changed default ssh port, and enforced RSA key authorizations.
+  ```linux
     sudo nano sshd_config
       Port 2200
       PermitRootLogin no
       PasswordAuthentication no
     sudo service sshd restart
+    ```
+* Opened only the required ports - ssh, www and ntp
+```linux
 
-Opened only the required ports - ssh, www and ntp
     sudo ufw status
     sudo ufw default deny incoming
     sudo ufw default allow outgoing
@@ -31,31 +36,36 @@ Opened only the required ports - ssh, www and ntp
     sudo ufw allow 80/tcp
     sudo ufw allow 123/tcp
     sudo ufw enable
-
-Created an account for udacity grader with sudo privileges.  Private key will be submitted as part of submission.
+```
+*  Created an account for udacity grader with sudo privileges.  Private key will be submitted as part of submission.
+```linux
     sudo adduser grader
     sudo cp /etc/sudoers.d/90-cloud-init-users /etc/sudoers.d/grader
     sudo nano /etc/sudoers.d/grader
-
-Added RSA login key 
+```
+* Added RSA login key 
+```linux
     ssh-keygen
     udacitygrader.pub
-
+    
     cd ~grader
     sudo mkdir .ssh
     sudo chmod 700 .ssh
     sudo touch .ssh/authorized_keys
     sudo chmod 644 .ssh/authorized_keys
     sudo nano .ssh/authorized_keys
-
-Setup Web Server
+```
+* Setup Web Server
+  ```linux
     sudo apt-get install apache2
+    ```
     http://18.188.61.208
     It works!
 
     sudo -H apt-get install libapache2-mod-wsgi
 
-Installed Python and required softare using pip install
+* Installed Python and required softare using pip install
+  ```linux
     sudo -H apt update	            --refresh repo
     sudo -H apt dist-upgrade       --update all software
     sudo -H apt install python2.7 python-pip
@@ -65,16 +75,17 @@ Installed Python and required softare using pip install
     sudo -H pip install sqlalchemy
     sudo -H pip install --upgrade oauth2client
     sudo -H pip install requests
-
-Installed PostGres database server
+```
+* Installed PostGres database server
+  ```linux
     sudo apt-get install postgresql postgresql-contrib
     sudo -u postgres psql postgres
     \password postgres
-
-Verify only local connections are allowed
+```
+* Verify only local connections are allowed
     sudo nano /etc/postgresql/9.5/main/pg_hba.conf 
 
-Created Application DB user account and database
+* Created Application DB user account and database
 ```sql
     CREATE USER catalog WITH
       LOGIN
@@ -96,21 +107,21 @@ Created Application DB user account and database
     su - catalog
     psql itemcatalog
 
-Use Python to add tables and data.
+* Use Python to add tables and data.
     python database_setup.py
     python lotsofmenus.py
 
-Install GIT
+* Install GIT
 sudo -H apt-get install git
 
 
-Configure console.google.com to add the new paths for oauth
+* Configure console.google.com to add the new paths for oauth
     http://18.188.61.208.xip.io
     http://18.188.61.208.xip.io/login   redirect uri
     http://18.188.61.208.xip.io/gconnect redirect uri
 
 
-Configure Mod WSGI - Web Application Gateway to Python
+* Configure Mod WSGI - Web Application Gateway to Python
   cd /var/www
   sudo mkdir /var/www/itemcatalogapp
   sudo mkdir /var/www/itemcatalog.com
@@ -124,7 +135,7 @@ Configure Mod WSGI - Web Application Gateway to Python
   from itemcatalog import app as application
 
 
-Test if Flask is working
+* Test if Flask is working
   sudo touch /var/www/itemcatalogapp/itemcatalog.py
   sudo nano /var/www/itemcatalogapp/itemcatalog.py
   add following:
@@ -137,7 +148,7 @@ Test if Flask is working
   if __name__ == "__main__":
       app.run()
 ```
-Configure Mod WSGIU
+* Configure Mod WSGIU
     cd /etc/apache2/sites-enabled
     sudo nano mv /etc/apache2/sites-enabled/000-default.conf  /etc/apache2/sites-enabled/001-
     default.conf
@@ -176,11 +187,11 @@ reload apache configuration
     sudo a2dissite 000-default.conf
     systemctl status apache2.service
 
-veriy mod wsgi is working
+* veriy mod wsgi is working
 http://18.188.61.208.xip.io
  It works!   (Hello, Flask!)
 
-Clone project from git to Ubuntu
+* Clone project from git to Ubuntu
 ```linux
   cd /var/www
   sudo mv itemcatalogapp test
@@ -189,7 +200,7 @@ Clone project from git to Ubuntu
   sudo /etc/init.d/apache2 reload
 ```
 
-Application URL is working!
+* Application URL is working!
 ```html
   http://18.188.61.208.xip.io
 ```
